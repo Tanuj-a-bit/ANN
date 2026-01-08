@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScribeAI | RNN Handwriting Recognition</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <h1 class="logo">Scribe<span>AI</span></h1>
+            <p class="subtitle">Advanced RNN-Driven Handwriting Recognition System</p>
+        </header>
+
+        <section class="recognition-card">
+            <div class="card-header">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="draw">Draw</button>
+                    <button class="tab-btn" data-tab="upload">Upload</button>
+                </div>
+                <div class="status-indicator" id="backend-status">
+                    <span class="dot"></span> Backend: Connecting...
+                </div>
+            </div>
+
+            <div class="tab-content" id="draw-tab">
+                <div class="canvas-container">
+                    <canvas id="drawing-canvas" width="600" height="150"></canvas>
+                    <div class="canvas-controls">
+                        <button id="clear-btn" class="secondary-btn">Clear</button>
+                        <button id="recognize-btn" class="primary-btn">Recognize</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="upload-tab">
+                <div class="upload-area" id="drop-zone">
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                    <div class="upload-icon">📄</div>
+                    <p>Drag & drop or <span>browse</span> to upload handwriting</p>
+                    <small>Supports PNG, JPG (Best results with 128x32 ratio)</small>
+                </div>
+                <div id="preview-container" class="hidden">
+                    <img id="image-preview" src="" alt="Handwriting Preview">
+                    <button id="upload-recognize-btn" class="primary-btn">Recognize Image</button>
+                </div>
+            </div>
+
+            <div class="result-section">
+                <h3>Prediction</h3>
+                <div class="result-box">
+                    <span id="prediction-text">... waiting for input</span>
+                    <div class="loader hidden" id="prediction-loader"></div>
+                </div>
+                <div class="confidence-bar-container">
+                    <div class="confidence-label">Confidence</div>
+                    <div class="confidence-track">
+                        <div class="confidence-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🧠</div>
+                <h4>RNN Architecture</h4>
+                <p>Deep Bidirectional LSTM layers capture spatial relationships in handwriting sequences.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">👁️</div>
+                <h4>CNN Vision</h4>
+                <p>Powerful Convolutional Neural Networks extract intricate features from images.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <h4>CTC Loss</h4>
+                <p>Connectionist Temporal Classification enables sequence-to-sequence learning without alignment.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ScribeAI. Powered by Deep Learning.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
