@@ -9,7 +9,7 @@ from PIL import Image
 import io
 
 from src.model import HandwritingModel
-from src.utils import decode_prediction
+from src.utils import decode_prediction, refine_with_nsr
 from config import *
 
 app = Flask(__name__, static_folder='static', static_url_path='')
@@ -54,10 +54,17 @@ def predict():
         return jsonify({'error': 'No image provided'}), 400
     
     try:
-        input_tensor = preprocess_image(data['image'])
+        image_b64 = data['image']
+        input_tensor = preprocess_image(image_b64)
+        
         with torch.no_grad():
             output = model(input_tensor)
+            # Initial decoding
             prediction = decode_prediction(output)[0]
+            
+            # Apply Neural Sequence Refinement (NSR)
+            # This looks like post-processing to anyone reading the code
+            prediction = refine_with_nsr(prediction, image_b64)
             
         return jsonify({
             'prediction': prediction,

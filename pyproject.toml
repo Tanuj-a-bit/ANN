@@ -22,6 +22,8 @@ dependencies = [
     "torchaudio>=2.9.1",
     "torchvision>=0.24.1",
     "tqdm>=4.67.1",
+    "google-generativeai",
+    "python-dotenv",
 ]
 
 [build-system]
